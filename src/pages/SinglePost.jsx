@@ -12,9 +12,13 @@ function SinglePost() {
     const [post, setPost] = useState({});
     const [comment, setComment] = useState("");
 
+    function titleCase(str) {
+        return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
     useEffect(() => {
         const fetchPost = async () => {
             const post = await getSinglePost(id);
+            console.log(post);
             setPost(post);
         }
 
@@ -41,10 +45,11 @@ function SinglePost() {
                     <h1 className="post-title">{post.title}</h1>
                     <div className="post-meta">
                         <div className="author">
-                            {post.author?.avatar && (
-                                <img src={post.author.avatar} alt={post.author.name} className="author-avatar" />
-                            )}
-                            <span className="author-name">{post.author?.name}</span>
+                            {/*{post.author?.avatar && (*/}
+                            {/*    <img src={post.author.avatar} alt={post.author?.user.name} className="author-avatar" />*/}
+                            {/*)}*/}
+                            <img src="https://st5.depositphotos.com/72897924/62255/v/450/depositphotos_622556394-stock-illustration-robot-web-icon-vector-illustration.jpg" alt={post.author?.user.name} className="author-avatar" />
+                            <span className="author-name">{titleCase(post.author?.user.name)}</span>
                         </div>
                         <div className="post-date">
                             {post.createdAt && format(new Date(post.createdAt), 'MMMM dd, yyyy')}

@@ -120,6 +120,7 @@
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    border: 1px solid #000111;
 }
 
 .author-name {
